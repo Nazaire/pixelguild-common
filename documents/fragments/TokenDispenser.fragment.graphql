@@ -1,0 +1,12 @@
+fragment tokenDispenser on TokenDispenser {
+  id
+  createdAt
+  updatedAt
+  tokenMint
+  paymentMint
+  paymentType
+  totalSupply
+  supply
+  content
+  currentPrice
+}

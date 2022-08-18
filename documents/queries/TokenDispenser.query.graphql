@@ -1,0 +1,5 @@
+query TokenDispenser($id: TokenDispenserId!) {
+  tokenDispenser(id: $id) {
+    ...tokenDispenser
+  }
+}

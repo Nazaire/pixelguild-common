@@ -1,0 +1,6 @@
+fragment signedTransactionInfo on SignedTransactionInfo {
+  signature
+  transaction {
+    ...transactionInfo
+  }
+}

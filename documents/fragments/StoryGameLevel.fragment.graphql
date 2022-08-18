@@ -1,0 +1,12 @@
+fragment storyGameLevel on StoryGameLevel {
+  id
+  userId
+  levelId
+  coins
+  createdAt
+  updatedAt
+  completedAt
+  duration
+  coins
+  gameState
+}

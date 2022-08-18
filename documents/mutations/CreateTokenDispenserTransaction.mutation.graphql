@@ -1,0 +1,17 @@
+mutation CreateTokenDispenserAllocation(
+  $tokenDispenserId: TokenDispenserId!
+  $user: String!
+  $paymentTokenAccount: String!
+  $tokenAccount: String!
+  $amount: Int!
+) {
+  createTokenDispenserAllocation(
+    tokenDispenserId: $tokenDispenserId
+    user: $user
+    paymentTokenAccount: $paymentTokenAccount
+    tokenAccount: $tokenAccount
+    amount: $amount
+  ) {
+    ...tokenDispenserAllocation
+  }
+}

@@ -1,0 +1,3 @@
+mutation ConnectWallet($claim: String!, $signer: String!, $signature: String!) {
+  connectWallet(claim: $claim, signer: $signer, signature: $signature)
+}

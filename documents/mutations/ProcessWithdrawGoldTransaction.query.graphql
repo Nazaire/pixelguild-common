@@ -1,0 +1,5 @@
+mutation ProcessWithdrawGoldTransaction($userId: ID!, $signature: String!) {
+  processWithdrawGoldTransaction(userId: $userId, signature: $signature) {
+    ...goldBucket
+  }
+}

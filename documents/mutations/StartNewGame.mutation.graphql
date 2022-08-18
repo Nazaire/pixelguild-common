@@ -1,0 +1,5 @@
+mutation StartNewGame($levelId: StoryGameLevelIdentifier!) {
+  startNewGame(levelId: $levelId) {
+    ...storyGameLevel
+  }
+}

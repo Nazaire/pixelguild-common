@@ -1,0 +1,12 @@
+fragment goldBucket on GoldBucket {
+  userId
+  createdAt
+  updatedAt
+  accrued
+  paid
+  withdrawalTransactionAmount
+  withdrawalTransaction {
+    ...transactionInfo
+  }
+  withdrawalTransactionSignature
+}

@@ -1,0 +1,12 @@
+fragment tokenSwapConfig on TokenSwapConfig {
+  input {
+    mint
+    creator
+    amount
+    method
+  }
+  output {
+    mint
+    amount
+  }
+}

@@ -1,0 +1,13 @@
+mutation ProcessTokenDispenserAllocationTransaction(
+  $tokenDispenserId: TokenDispenserId!
+  $user: String!
+  $signature: String!
+) {
+  processTokenDispenserAllocationTransaction(
+    tokenDispenserId: $tokenDispenserId
+    user: $user
+    signature: $signature
+  ) {
+    ...tokenDispenserAllocation
+  }
+}

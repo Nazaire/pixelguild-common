@@ -1,0 +1,5 @@
+mutation CreateWithdrawGoldTransaction($userId: ID!) {
+  createWithdrawGoldTransaction(userId: $userId) {
+    ...goldBucket
+  }
+}

@@ -1,0 +1,12 @@
+fragment tokenDispenserAllocation on TokenDispenserAllocation {
+  id
+  tokenDispenserId
+  createdAt
+  updatedAt
+  tokenAmount
+  paymentAmount
+  transaction {
+    ...transactionInfo
+  }
+  transactionSignature
+}

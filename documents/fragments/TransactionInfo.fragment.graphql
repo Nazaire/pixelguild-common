@@ -1,0 +1,5 @@
+fragment transactionInfo on TransactionInfo {
+  blockHash
+  lastValidBlockHeight
+  data
+}

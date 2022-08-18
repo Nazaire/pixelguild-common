@@ -1,0 +1,5 @@
+query TokenSwapConfig($id: TokenSwapId!) {
+  tokenSwapConfig(id: $id) {
+    ...tokenSwapConfig
+  }
+}

@@ -1,0 +1,5 @@
+query GoldBucket($userId: ID!) {
+  goldBucket(userId: $userId) {
+    ...goldBucket
+  }
+}

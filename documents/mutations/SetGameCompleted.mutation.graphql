@@ -1,0 +1,13 @@
+mutation SetGameCompleted(
+  $gameId: ID!
+  $gameCoins: StoryGameCoinsInput!
+  $endGameState: StoryGameLevelGameState!
+) {
+  setGameCompleted(
+    gameId: $gameId
+    gameCoins: $gameCoins
+    endGameState: $endGameState
+  ) {
+    ...storyGameLevel
+  }
+}
