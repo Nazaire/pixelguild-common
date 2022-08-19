@@ -94,9 +94,9 @@ enum StoryGameLevelGameState {
 
 """The game level"""
 enum StoryGameLevelIdentifier {
-  Dungeon
-  Forest
-  Tutorial
+  DUNGEON
+  FOREST
+  TUTORIAL
 }
 
 type StoryGameProgress {

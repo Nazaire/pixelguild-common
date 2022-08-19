@@ -1,7 +1,7 @@
 import { StoryGameLevelIdentifier } from "../types/StoryGameLevelIdentifier.enum";
 
 export const StoryGameLevelSequence = [
-  StoryGameLevelIdentifier.Tutorial,
-  StoryGameLevelIdentifier.Forest,
-  StoryGameLevelIdentifier.Dungeon,
+  StoryGameLevelIdentifier.TUTORIAL,
+  StoryGameLevelIdentifier.FOREST,
+  StoryGameLevelIdentifier.DUNGEON,
 ] as const;
