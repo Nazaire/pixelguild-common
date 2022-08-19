@@ -1,5 +1,5 @@
 export enum StoryGameLevelIdentifier {
-  Tutorial = "TUTORIAL",
-  Forest = "FOREST",
-  Dungeon = "DUNGEON",
+  TUTORIAL = "TUTORIAL",
+  FOREST = "FOREST",
+  DUNGEON = "DUNGEON",
 }
