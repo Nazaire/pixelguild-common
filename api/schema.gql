@@ -55,6 +55,7 @@ type Query {
   goldBucket(userId: ID!): GoldBucket
   newTemporaryToken: String!
   nonce: Float!
+  storyGameProgress(userId: ID!): StoryGameProgress
   tokenDispenser(id: TokenDispenserId!): TokenDispenser
   tokenDispenserQuote(amount: Int!, id: TokenDispenserId!): Int!
   tokenSwapConfig(id: TokenSwapId!): TokenSwapConfig!
@@ -93,9 +94,17 @@ enum StoryGameLevelGameState {
 
 """The game level"""
 enum StoryGameLevelIdentifier {
-  DUNGEON
-  FOREST
-  TUTORIAL
+  Dungeon
+  Forest
+  Tutorial
+}
+
+type StoryGameProgress {
+  createdAt: DateTime!
+  furthestLevelCompleted: StoryGameLevelIdentifier!
+  id: ID!
+  updatedAt: DateTime!
+  userId: ID!
 }
 
 type TokenDispenser {

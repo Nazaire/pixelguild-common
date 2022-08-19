@@ -1,4 +1,4 @@
-import { StoryGameLevelIdentifier } from "@tests/utils/schema";
+import { StoryGameLevelIdentifier } from "../types/StoryGameLevelIdentifier.enum";
 
 export const StoryGameLevelSequence = [
   StoryGameLevelIdentifier.Tutorial,

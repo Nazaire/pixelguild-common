@@ -1,0 +1,6 @@
+fragment storyGameProgress on StoryGameProgress {
+  id
+  updatedAt
+  createdAt
+  furthestLevelCompleted
+}

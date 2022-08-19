@@ -1,0 +1,5 @@
+query StoryGameProgress($userId: ID!) {
+  storyGameProgress(userId: $userId) {
+    ...storyGameProgress
+  }
+}
