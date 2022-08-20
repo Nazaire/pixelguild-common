@@ -9,4 +9,5 @@ fragment storyGameLevel on StoryGameLevel {
   duration
   coins
   gameState
+  guildieBonusGoldFactor
 }

@@ -8,6 +8,15 @@ mutation SetGameCompleted(
     gameCoins: $gameCoins
     endGameState: $endGameState
   ) {
-    ...storyGameLevel
+    storyGameLevel {
+      ...storyGameLevel
+    }
+    goldReceipt {
+      id
+      total
+    }
+    totalGoldRewarded
+    levelsUnlocked
+    achievementsUnlocked
   }
 }
