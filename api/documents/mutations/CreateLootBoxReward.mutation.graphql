@@ -1,0 +1,17 @@
+mutation CreateLootBoxReward(
+  $lootBoxId: LootBoxId!
+  $userId: ID!
+  $blockHash: String!
+  $signature: String!
+  $mints: [String!]
+) {
+  createLootBoxReward(
+    lootBoxId: $lootBoxId
+    userId: $userId
+    blockHash: $blockHash
+    signature: $signature
+    mints: $mints
+  ) {
+    ...lootBoxReward
+  }
+}

@@ -1,0 +1,12 @@
+fragment lootBoxReward on LootBoxReward {
+  id
+  userId
+  createdAt
+  updatedAt
+
+  inputTransactionSignature
+
+  rewardIndex
+
+  rewardTransactionSignature
+}
