@@ -83,7 +83,7 @@ type Query {
   nonce: Float!
   storyGameProgress(userId: ID!): StoryGameProgress
   tokenDispenser(id: TokenDispenserId!): TokenDispenser
-  tokenDispenserQuote(amount: Int!, id: TokenDispenserId!): Int!
+  tokenDispenserQuote(amount: Float!, id: TokenDispenserId!): Float!
   tokenSwapConfig(id: TokenSwapId!): TokenSwapConfig!
   tokenSwapTransaction(tokenSwapId: TokenSwapId!, user: String!): SignedTransactionInfo!
   user(id: ID!): User
@@ -143,23 +143,23 @@ type StoryGameProgress {
 }
 
 type TokenDispenser {
-  content: Int!
+  content: Float!
   createdAt: DateTime!
   currentPrice: Float!
   id: TokenDispenserId!
   paymentMint: String!
   paymentType: TokenDispenserPaymentType!
-  supply: Int!
+  supply: Float!
   tokenMint: String!
-  totalSupply: Int!
+  totalSupply: Float!
   updatedAt: DateTime!
 }
 
 type TokenDispenserAllocation {
   createdAt: DateTime!
   id: ID!
-  paymentAmount: Int!
-  tokenAmount: Int!
+  paymentAmount: Float!
+  tokenAmount: Float!
   tokenDispenserId: TokenDispenserId!
   transaction: TransactionInfo
   transactionSignature: String

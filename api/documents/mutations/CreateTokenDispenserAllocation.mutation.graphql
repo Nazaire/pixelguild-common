@@ -3,7 +3,7 @@ mutation CreateTokenDispenserAllocation(
   $user: String!
   $paymentTokenAccount: String!
   $tokenAccount: String!
-  $amount: Int!
+  $amount: Float!
 ) {
   createTokenDispenserAllocation(
     tokenDispenserId: $tokenDispenserId
