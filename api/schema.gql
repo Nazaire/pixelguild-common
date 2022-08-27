@@ -66,7 +66,7 @@ type LootBoxReward {
 type Mutation {
   connectWallet(claim: String!, signature: String!, signer: String!): String
   createLootBoxReward(blockHash: String!, lootBoxId: LootBoxId!, mints: [String!], signature: String!, userId: ID!): LootBoxReward!
-  createTokenDispenserAllocation(amount: Int!, paymentTokenAccount: String!, tokenAccount: String!, tokenDispenserId: TokenDispenserId!, user: String!): TokenDispenserAllocation!
+  createTokenDispenserAllocation(amount: Float!, paymentTokenAccount: String!, tokenAccount: String!, tokenDispenserId: TokenDispenserId!, user: String!): TokenDispenserAllocation!
   createWithdrawGoldTransaction(feePayer: String, userId: ID!): GoldBucket!
   mintAchievement(type: AchievementType!, wallet: String!): Achievement!
   processTokenDispenserAllocationTransaction(signature: String!, tokenDispenserId: TokenDispenserId!, user: String!): TokenDispenserAllocation
