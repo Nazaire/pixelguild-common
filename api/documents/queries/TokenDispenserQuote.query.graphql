@@ -1,0 +1,3 @@
+query TokenDispenserQuote($id: TokenDispenserId!, $amount: Int!) {
+  tokenDispenserQuote(id: $id, amount: $amount)
+}
