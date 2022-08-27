@@ -24,7 +24,7 @@ export const MainnetAccounts = definePixelGuildAccounts({
 export const DevnetAccounts = definePixelGuildAccountsWithDefaults(
   MainnetAccounts,
   {
-    PIXEL: new PublicKey("DnB27AtrQzmsCzb26AZwktrQiGG9bBkyhzs1rVrKvHAo"),
+    PIXEL: new PublicKey("8XcGFqZiNFKhGbkRTvY84mAyMJkjChQkczuvx5UaMc9J"),
     GOLD: new PublicKey("DFkEanPARiN5mJ3PXQtJ9KqYLCGGYA7iH2ja9AwEPaut"),
     GOLDEN_KEY_NFT_CREATOR: new PublicKey(
       "9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"
