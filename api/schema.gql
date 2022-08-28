@@ -143,15 +143,15 @@ type StoryGameProgress {
 }
 
 type TokenDispenser {
-  content: Float!
+  content: Int!
   createdAt: DateTime!
   currentPrice: Float!
   id: TokenDispenserId!
   paymentMint: String!
   paymentType: TokenDispenserPaymentType!
-  supply: Float!
+  supply: Int!
   tokenMint: String!
-  totalSupply: Float!
+  totalSupply: Int!
   updatedAt: DateTime!
 }
 
