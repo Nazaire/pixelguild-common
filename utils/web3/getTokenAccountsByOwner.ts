@@ -1,4 +1,3 @@
-import { SplAssociatedTokenAccountsCoder } from "@project-serum/anchor/dist/cjs/coder/spl-associated-token/accounts";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { Connection, PublicKey } from "@solana/web3.js";
 
