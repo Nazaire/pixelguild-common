@@ -8,23 +8,26 @@ import {
 
 export type Cluster = SolanaCluster | "localnet";
 
-export const cluster = (process.env.APP_CLUSTER as Cluster) || "devnet";
-export const url = (() => {
-  switch (cluster) {
+export const getClusterUrl = (value: Cluster = cluster) => {
+  switch (value) {
     case "localnet":
       return process.env.APP_LOCALNET_URL || "http://localhost:8899";
     case "devnet":
-      return process.env.APP_DEVNET_URL || clusterApiUrl(cluster);
+      return process.env.APP_DEVNET_URL || clusterApiUrl(value);
     case "testnet":
-      return process.env.APP_TESTNET_URL || clusterApiUrl(cluster);
+      return process.env.APP_TESTNET_URL || clusterApiUrl(value);
     case "mainnet-beta":
-      return process.env.APP_MAINNET_URL || clusterApiUrl(cluster);
+      return process.env.APP_MAINNET_URL || clusterApiUrl(value);
     default:
-      return clusterApiUrl(cluster);
+      return clusterApiUrl(value);
   }
-})();
+};
+
+export const cluster = (process.env.APP_CLUSTER as Cluster) || "devnet";
+export const clusterUrl = getClusterUrl(cluster);
+
 export function getConnection(
   commitmentOrConfig?: Commitment | ConnectionConfig
 ) {
-  return new Connection(url, commitmentOrConfig);
+  return new Connection(clusterUrl, commitmentOrConfig);
 }

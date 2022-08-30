@@ -79,6 +79,7 @@ type Mutation {
 type Query {
   achievement(type: AchievementType!, wallet: String!): Achievement
   goldBucket(userId: ID!): GoldBucket
+  guildiesCollection(userId: ID!): UserGuildieCollectionAggregate
   newTemporaryToken: String!
   nonce: Float!
   storyGameProgress(userId: ID!): StoryGameProgress
@@ -113,7 +114,7 @@ type StoryGameLevel {
   createdAt: DateTime!
   duration: Int
   gameState: StoryGameLevelGameState!
-  guildieBonusGoldFactor: Int!
+  guildieBonusGoldFactor: Float!
   id: ID!
   levelId: StoryGameLevelIdentifier!
   updatedAt: DateTime!
@@ -216,4 +217,8 @@ type User {
   solCreditLatestSignature: String
   updatedAt: DateTime!
   wallet: String
+}
+
+type UserGuildieCollectionAggregate {
+  userId: ID!
 }
