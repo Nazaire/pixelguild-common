@@ -11,7 +11,7 @@ import { PublicKey } from "@solana/web3.js";
  */
 export const MainnetAccounts = definePixelGuildAccounts({
   PIXEL: new PublicKey("9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"),
-  GOLD: new PublicKey("9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"),
+  GOLD: new PublicKey("BsYZmmEXPVPA31aax5pawZtYppoGiowPckxTcituaUCY"),
   GOLDEN_KEY_NFT_CREATOR: new PublicKey(
     "9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"
   ),
