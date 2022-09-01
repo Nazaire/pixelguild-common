@@ -5,7 +5,7 @@ export class GuildieGoldEquations {
   static readonly RARITY_MULTIPLIER_RANGE = [Math.sqrt(2), Math.sqrt(4)];
 
   static stackingMultiplier(quantity: number) {
-    if (quantity <= 1) return 0;
+    if (quantity < 1) return 0;
 
     const x = clamp(quantity, 1, 10);
 
