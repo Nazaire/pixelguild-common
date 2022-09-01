@@ -132,6 +132,7 @@ enum StoryGameLevelGameState {
 enum StoryGameLevelIdentifier {
   DUNGEON
   FOREST
+  SEWER
   TUTORIAL
 }
 
