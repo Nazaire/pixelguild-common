@@ -123,14 +123,18 @@ type StoryGameProgress {
 }
 
 type TokenDispenser {
+  bucketSize: Int!
   content: Int!
   createdAt: DateTime!
   currentPrice: Float!
   id: TokenDispenserId!
+  interval: Int!
+  maxTokenAllocationSize: Int
   paymentMint: String!
   paymentType: TokenDispenserPaymentType!
   supply: Int!
   tokenMint: String!
+  tokensPerInterval: Int!
   totalSupply: Int!
   updatedAt: DateTime!
 }

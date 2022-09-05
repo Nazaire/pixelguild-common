@@ -9,4 +9,8 @@ fragment tokenDispenser on TokenDispenser {
   supply
   content
   currentPrice
+  bucketSize
+  interval
+  maxTokenAllocationSize
+  tokensPerInterval
 }
