@@ -1,0 +1,13 @@
+query ProcessTokenSwapTransaction(
+  $key: String!
+  $user: String!
+  $signature: String!
+  $blockHash: String!
+) {
+  processTokenSwapTransaction(
+    key: $key
+    user: $user
+    signature: $signature
+    blockHash: $blockHash
+  )
+}

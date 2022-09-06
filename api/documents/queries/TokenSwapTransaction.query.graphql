@@ -1,5 +1,0 @@
-query TokenSwapTransaction($tokenSwapId: TokenSwapId!, $user: String!) {
-  tokenSwapTransaction(tokenSwapId: $tokenSwapId, user: $user) {
-    ...signedTransactionInfo
-  }
-}

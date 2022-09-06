@@ -60,11 +60,10 @@ type Query {
   guildiesCollection(userId: ID!): UserGuildieCollectionAggregate
   newTemporaryToken: String!
   nonce: Float!
+  processTokenSwapTransaction(blockHash: String!, key: String!, signature: String!, user: String!): String!
   storyGameProgress(userId: ID!): StoryGameProgress
   tokenDispenser(id: TokenDispenserId!): TokenDispenser
   tokenDispenserQuote(amount: Float!, id: TokenDispenserId!): Float!
-  tokenSwapConfig(id: TokenSwapId!): TokenSwapConfig!
-  tokenSwapTransaction(tokenSwapId: TokenSwapId!, user: String!): SignedTransactionInfo!
   user(id: ID!): User
 }
 
@@ -74,11 +73,6 @@ type SetGameCompletedResult {
   levelsUnlocked: [String!]!
   storyGameLevel: StoryGameLevel!
   totalGoldRewarded: Int!
-}
-
-type SignedTransactionInfo {
-  signature: String!
-  transaction: TransactionInfo!
 }
 
 input StoryGameCoinsInput {
@@ -158,33 +152,6 @@ enum TokenDispenserId {
 """The token dispenser payment type"""
 enum TokenDispenserPaymentType {
   BURN
-}
-
-type TokenSwapConfig {
-  input: TokenSwapConfigInput!
-  output: TokenSwapConfigOutput!
-}
-
-type TokenSwapConfigInput {
-  amount: Int!
-  creator: String
-  method: TokenSwapInputMethod!
-  mint: String
-}
-
-type TokenSwapConfigOutput {
-  amount: Int!
-  mint: String!
-}
-
-"""The token swap id"""
-enum TokenSwapId {
-  PIXEL_FOR_LOOTCHEST
-}
-
-"""The token dispenser input method"""
-enum TokenSwapInputMethod {
-  TRANSFER
 }
 
 type TransactionInfo {
