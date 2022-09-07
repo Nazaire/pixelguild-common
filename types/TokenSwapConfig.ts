@@ -2,6 +2,10 @@ import { useAccount } from "@common/state/accounts";
 import { PixelGuildAccount } from "@common/types/PixelGuildAccount.enum";
 import { cloneDeep } from "lodash";
 
+export enum TokenSwapConfigKey {
+  PIXEL_FOR_GOLDEN_CHEST = "PIXEL_FOR_GOLDEN_CHEST",
+}
+
 export interface ITokenSwapInput {
   token: string;
 
@@ -36,7 +40,7 @@ export interface ITokenSwapConfig {
 
 const TokenSwapConfigs: ITokenSwapConfig[] = [
   {
-    key: "PIXEL_FOR_GOLDEN_CHEST",
+    key: TokenSwapConfigKey.PIXEL_FOR_GOLDEN_CHEST,
     input: {
       token: useAccount(PixelGuildAccount.PIXEL).toString(),
       amount: 1e6,
