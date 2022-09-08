@@ -1,16 +1,16 @@
 mutation CreateLootBoxReward(
-  $lootBoxId: LootBoxId!
+  $lootBoxKey: String!
   $userId: ID!
   $blockHash: String!
   $signature: String!
-  $mints: [String!]
+  $creators: JSON
 ) {
   createLootBoxReward(
-    lootBoxId: $lootBoxId
+    lootBoxKey: $lootBoxKey
     userId: $userId
     blockHash: $blockHash
     signature: $signature
-    mints: $mints
+    creators: $creators
   ) {
     ...lootBoxReward
   }

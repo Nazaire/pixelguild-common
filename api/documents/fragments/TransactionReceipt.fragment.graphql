@@ -1,0 +1,5 @@
+fragment transactionReceipt on TransactionReceipt {
+  signature
+  blockHash
+  lastValidBlockHeight
+}

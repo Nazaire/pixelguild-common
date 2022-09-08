@@ -1,43 +1,42 @@
 import { reduce } from "lodash";
 
-export enum LootBoxId {
-  BAKER_BABA = "BAKER_BABA",
+export enum LootBoxKey {
+  GOLDEN_CHEST_1 = "GOLDEN_CHEST_1",
+  GOLDEN_CHEST_GUARANTEED = "GOLDEN_CHEST_GUARANTEED",
 }
 
 export interface ILootBoxInput {
-  mint?: string;
+  token?: string;
   creator?: string;
 
   amount: number;
 
   method: "burn" | "transfer";
 }
-export type ILootBoxTombola = [
-  {
-    weight: number;
-    reward: ILootBoxRewardOption;
-  }
-];
+export type ILootBoxTombola = {
+  weight: number;
+  reward: ILootBoxRewardOption;
+}[];
 
 export interface ILootBoxConfig {
-  id: LootBoxId;
+  key: LootBoxKey;
   inputs: ILootBoxInput[];
   rewards: ILootBoxTombola;
 }
 
 export class LootBoxConfig implements ILootBoxConfig {
-  id!: LootBoxId;
+  key!: LootBoxKey;
   inputs!: ILootBoxInput[];
   rewards!: ILootBoxTombola;
 
+  totalTombolaWeight!: number;
+
   constructor(config: ILootBoxConfig) {
-    this.id = config.id;
+    this.key = config.key;
     this.inputs = config.inputs;
     this.rewards = config.rewards;
-  }
 
-  get tombolaWeight() {
-    return reduce(
+    this.totalTombolaWeight = reduce(
       this.rewards,
       (total, reward) => {
         return total + reward.weight;
@@ -47,30 +46,44 @@ export class LootBoxConfig implements ILootBoxConfig {
   }
 
   probability(index: number) {
-    return this.rewards[index].weight / this.tombolaWeight;
+    return this.rewards[index].weight / this.totalTombolaWeight;
   }
 }
 
-export type LootBoxDefinitions = Record<LootBoxId, ILootBoxConfig>;
+export type LootBoxDefinitions = Record<LootBoxKey, ILootBoxConfig>;
 
 // REWARD TYPES
 
-export enum LootBoxTokenRewardType {
-  NFT = "NFT",
-  TOKENS = "TOKENS",
+export interface ILootBoxEmptyReward {
+  type: "empty";
 }
 
-export interface ILootBoxTokenRewardOption {
-  rewardType: LootBoxTokenRewardType.TOKENS;
-  mint: string;
+export interface ILootBoxMintReward {
+  type: "mint";
+
+  token: string;
+
   amount: number;
 }
 
-export interface ILootBoxNftRewardOption {
-  rewardType: LootBoxTokenRewardType.NFT;
-  uri: string;
+/**
+ * The transfer reward is only a potential reward while there is supply in the pool
+ */
+export interface ILootBoxTransferReward {
+  type: "transfer";
+
+  token: string;
+
+  amount: number;
+}
+
+export interface ILootBoxEditionReward {
+  type: "edition";
+
+  masterEdition: string;
 }
 
 export type ILootBoxRewardOption =
-  | ILootBoxTokenRewardOption
-  | ILootBoxNftRewardOption;
+  | ILootBoxEditionReward
+  | ILootBoxMintReward
+  | ILootBoxEmptyReward;

@@ -1,36 +1,61 @@
 import {
-  ILootBoxRewardOption,
-  LootBoxConfig,
+  ILootBoxConfig,
   LootBoxDefinitions,
-  LootBoxId,
-  LootBoxTokenRewardType,
+  LootBoxKey,
 } from "@common/types/LootBoxConfig";
 import { PixelGuildAccount } from "@common/types/PixelGuildAccount.enum";
-import { cluster } from "@common/utils/web3/getConnection";
 import { cloneDeep } from "lodash";
 import { useAccount } from "./accounts";
 
-export const LOOTBOX_REWARD_A: ILootBoxRewardOption = {
-  rewardType: LootBoxTokenRewardType.NFT,
-  uri: "https://test.co",
-};
-
-const LootBoxDefinitions: LootBoxDefinitions = {
-  [LootBoxId.BAKER_BABA]: {
-    id: LootBoxId.BAKER_BABA,
+const LootBoxDefinitions: ILootBoxConfig[] = [
+  {
+    key: LootBoxKey.GOLDEN_CHEST_1,
     inputs: [
       {
         // GOLDEN KEY
-        mint: useAccount(PixelGuildAccount.GOLDEN_KEY).toString(),
+        creator: useAccount(
+          PixelGuildAccount.GOLDEN_KEY_NFT_CREATOR
+        ).toString(),
         method: "burn",
         amount: 1,
       },
       {
-        // BAKER BABA LOOTBOX
-        mint:
-          cluster === "mainnet-beta"
-            ? ""
-            : "9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS",
+        token: useAccount(PixelGuildAccount.LOOT_CHEST_GOLDEN).toString(),
+        method: "burn",
+        amount: 1,
+      },
+    ],
+    rewards: [
+      {
+        weight: 33,
+        reward: {
+          type: "edition",
+          masterEdition: useAccount(
+            PixelGuildAccount.CHARACTER_MASTER_EDITION_GOLDEN_BABA
+          ).toString(),
+        },
+      },
+      {
+        weight: 67,
+        reward: {
+          type: "empty",
+        },
+      },
+    ],
+  },
+  {
+    key: LootBoxKey.GOLDEN_CHEST_GUARANTEED,
+    inputs: [
+      {
+        // GOLDEN KEY
+        creator: useAccount(
+          PixelGuildAccount.GOLDEN_KEY_NFT_CREATOR
+        ).toString(),
+        method: "transfer",
+        amount: 4,
+      },
+      {
+        token: useAccount(PixelGuildAccount.LOOT_CHEST_GOLDEN).toString(),
         method: "burn",
         amount: 1,
       },
@@ -38,18 +63,27 @@ const LootBoxDefinitions: LootBoxDefinitions = {
     rewards: [
       {
         weight: 1,
-        reward: LOOTBOX_REWARD_A,
+        reward: {
+          type: "edition",
+          masterEdition: useAccount(
+            PixelGuildAccount.CHARACTER_MASTER_EDITION_GOLDEN_BABA
+          ).toString(),
+        },
       },
     ],
   },
-};
+];
 
-export function getLootBoxConfig(id: LootBoxId) {
-  return new LootBoxConfig(cloneDeep(LootBoxDefinitions[id]));
+export function getLootBoxConfigByKey(key: string) {
+  return cloneDeep(LootBoxDefinitions.find((c) => c.key === key));
+}
+
+export function getLootBoxRewardOption(key: string, reward: number) {
+  const config = getLootBoxConfigByKey(key);
+  if (!config) return null;
+  return config.rewards[reward].reward;
 }
 
 export function getLootBoxConfigs() {
-  return cloneDeep(
-    Object.values(LootBoxConfig).map((c) => new LootBoxConfig(c))
-  );
+  return cloneDeep(LootBoxDefinitions);
 }

@@ -4,9 +4,13 @@ fragment lootBoxReward on LootBoxReward {
   createdAt
   updatedAt
 
+  lootBoxKey
+
   inputTransactionSignature
 
-  rewardIndex
+  reward
 
-  rewardTransactionSignature
+  rewardTransaction {
+   ...transactionReceipt
+   }
 }

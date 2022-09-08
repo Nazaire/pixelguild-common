@@ -29,24 +29,25 @@ enum GoldReceiptLineItemId {
   GUILDIE_BONUS_GOLD
 }
 
-enum LootBoxId {
-  BAKER_BABA
-}
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 type LootBoxReward {
   createdAt: DateTime!
-  id: String!
+  id: Int!
   inputTransactionSignature: String!
-  lootBoxId: LootBoxId!
-  rewardIndex: Int!
-  rewardTransactionSignature: String
+  lootBoxKey: String!
+  reward: Int!
+  rewardTransaction: TransactionReceipt
   updatedAt: DateTime!
   userId: ID!
 }
 
 type Mutation {
   connectWallet(claim: String!, signature: String!, signer: String!): String
-  createLootBoxReward(blockHash: String!, lootBoxId: LootBoxId!, mints: [String!], signature: String!, userId: ID!): LootBoxReward!
+  createLootBoxReward(blockHash: String!, creators: JSON, lootBoxKey: String!, signature: String!, userId: ID!): LootBoxReward!
   createTokenDispenserAllocation(amount: Float!, paymentTokenAccount: String!, tokenAccount: String!, tokenDispenserId: TokenDispenserId!, user: String!): TokenDispenserAllocation!
   createWithdrawGoldTransaction(feePayer: String, userId: ID!): GoldBucket!
   processTokenDispenserAllocationTransaction(signature: String!, tokenDispenserId: TokenDispenserId!, user: String!): TokenDispenserAllocation
@@ -58,6 +59,7 @@ type Mutation {
 type Query {
   goldBucket(userId: ID!): GoldBucket
   guildiesCollection(userId: ID!): UserGuildieCollectionAggregate
+  lootBoxReward(id: Int!): LootBoxReward!
   newTemporaryToken: String!
   nonce: Float!
   processTokenSwapTransaction(blockHash: String!, key: String!, signature: String!, user: String!): String!
@@ -158,6 +160,12 @@ type TransactionInfo {
   blockHash: String!
   data: String!
   lastValidBlockHeight: Int!
+}
+
+type TransactionReceipt {
+  blockHash: String!
+  lastValidBlockHeight: Int!
+  signature: String!
 }
 
 type User {
