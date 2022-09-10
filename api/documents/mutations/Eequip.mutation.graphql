@@ -1,0 +1,9 @@
+mutation EquipCustomisationItem(
+  $userId: ID!
+  $slot: UserProfileCustomisationSlot!
+  $item: String!
+) {
+  equipCustomisationItem(userId: $userId, slot: $slot, item: $item) {
+    ...userProfile
+  }
+}

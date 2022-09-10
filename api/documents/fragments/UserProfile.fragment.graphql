@@ -1,0 +1,7 @@
+fragment userProfile on UserProfile {
+  userId
+  createdAt
+  updatedAt
+
+  equippedCharacter
+}

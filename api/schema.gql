@@ -50,6 +50,7 @@ type Mutation {
   createLootBoxReward(blockHash: String!, creators: JSON, lootBoxKey: String!, signature: String!, userId: ID!): LootBoxReward!
   createTokenDispenserAllocation(amount: Float!, paymentTokenAccount: String!, tokenAccount: String!, tokenDispenserId: TokenDispenserId!, user: String!): TokenDispenserAllocation!
   createWithdrawGoldTransaction(feePayer: String, userId: ID!): GoldBucket!
+  equipCustomisationItem(item: String!, slot: UserProfileCustomisationSlot!, userId: ID!): UserProfile!
   processTokenDispenserAllocationTransaction(signature: String!, tokenDispenserId: TokenDispenserId!, user: String!): TokenDispenserAllocation
   processWithdrawGoldTransaction(signature: String!, userId: ID!): GoldBucket!
   setGameCompleted(endGameState: StoryGameLevelGameState!, gameCoins: StoryGameCoinsInput, gameId: ID!): SetGameCompletedResult!
@@ -67,6 +68,7 @@ type Query {
   tokenDispenser(id: TokenDispenserId!): TokenDispenser
   tokenDispenserQuote(amount: Float!, id: TokenDispenserId!): Float!
   user(id: ID!): User
+  userProfile(userId: ID!): UserProfile
 }
 
 type SetGameCompletedResult {
@@ -179,4 +181,15 @@ type User {
 
 type UserGuildieCollectionAggregate {
   userId: ID!
+}
+
+type UserProfile {
+  createdAt: DateTime!
+  equippedCharacter: String
+  updatedAt: DateTime!
+  userId: ID!
+}
+
+enum UserProfileCustomisationSlot {
+  CHARACTER
 }
