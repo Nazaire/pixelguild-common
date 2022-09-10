@@ -3,34 +3,53 @@ import {
   getAssociatedTokenAddressSync,
 } from "@solana/spl-token";
 import { Connection, PublicKey, Transaction } from "@solana/web3.js";
-import { buildCreateManyTokenAccounts } from "../instructions/buildCreateManyTokenAccounts";
+import { zip } from "lodash";
 
-export async function initTokenAccounts(
-  connection: Connection,
-  mints: PublicKey[],
-  owner: PublicKey,
-  payer: PublicKey
-) {
+export async function initTokenAccounts(params: {
+  connection: Connection;
+  mints: PublicKey[];
+  owner: PublicKey;
+  payer: PublicKey;
+  blockHash?: string;
+}) {
   const accountsToCreate: { mint: PublicKey; account: PublicKey }[] = [];
-  for (const { mint, account } of mints.map((mint) => ({
-    mint,
-    account: getAssociatedTokenAddressSync(mint, owner),
-  }))) {
-    if (!(await connection.getAccountInfo(account))) {
-      accountsToCreate.push({ mint, account });
+
+  const accounts = await params.connection.getMultipleAccountsInfo(
+    params.mints.map((mint) =>
+      getAssociatedTokenAddressSync(mint, params.owner)
+    )
+  );
+
+  for (const [mint, account] of zip(params.mints, accounts)) {
+    if (!account) {
+      accountsToCreate.push({
+        mint: mint!,
+        account: getAssociatedTokenAddressSync(mint!, params.owner),
+      });
     }
   }
 
   if (accountsToCreate.length > 0) {
     const tx = new Transaction();
-    const { blockhash, lastValidBlockHeight } =
-      await await connection.getLatestBlockhash();
-    tx.recentBlockhash = blockhash;
-    tx.lastValidBlockHeight = lastValidBlockHeight;
+    tx.feePayer = params.payer;
+
+    if (params.blockHash) {
+      tx.recentBlockhash = params.blockHash;
+    } else {
+      const { blockhash, lastValidBlockHeight } =
+        await params.connection.getLatestBlockhash();
+      tx.recentBlockhash = blockhash;
+      tx.lastValidBlockHeight = lastValidBlockHeight;
+    }
 
     tx.instructions.push(
       ...accountsToCreate.map(({ mint, account }) =>
-        createAssociatedTokenAccountInstruction(payer, account, owner, mint)
+        createAssociatedTokenAccountInstruction(
+          params.payer,
+          account,
+          params.owner,
+          mint
+        )
       )
     );
 
