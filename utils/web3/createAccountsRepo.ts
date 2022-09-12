@@ -1,7 +1,7 @@
-import { promiseSequence } from "@common/utils/promiseSequence";
 import { AccountInfo, Connection, PublicKey } from "@solana/web3.js";
 import DataLoader from "dataloader";
 import { chunk, flatMap, zip } from "lodash";
+import { asyncSequence } from "../asyncSequence";
 import { getConnection } from "./getConnection";
 
 export function createAccountsRepo(
@@ -21,8 +21,8 @@ export function createAccountsRepo(
      */
     if (options?.choke) await options.choke(1);
     const accountsWithInfo = flatMap(
-      await promiseSequence(
-        chunk(accounts, 100).map(async (accounts) => {
+      await asyncSequence(
+        chunk(accounts, 100).map((accounts) => async () => {
           const results = await connection.getMultipleAccountsInfo(
             accounts.map((account) => new PublicKey(account))
           );

@@ -1,18 +1,18 @@
-import { promiseSequence } from "@common/utils/promiseSequence";
 import { trimNull } from "@common/utils/trimNull";
 import {
   Account,
   findMasterEditionV2Pda,
   findMetadataPda,
   parseOriginalOrPrintEditionAccount,
+  PrintEditionAccountData,
   toMetadataAccount,
 } from "@metaplex-foundation/js";
 import { AccountInfo, PublicKey } from "@solana/web3.js";
 import axios from "axios";
 import DataLoader from "dataloader";
 import { chunk, find, flatMap, isNil, zip } from "lodash";
+import { asyncSequence } from "../asyncSequence";
 import { createAccountsRepo } from "./createAccountsRepo";
-import { getConnection } from "./getConnection";
 import { IMetaplexToken, MetaplexToken } from "./types/MetaplexToken";
 
 // CHECK: Max batch size of this function?
@@ -28,9 +28,9 @@ export function createMetaplexTokenRepo(
   > = createAccountsRepo()
 ) {
   const loader = new DataLoader<string, MetaplexToken | null>(async (mints) => {
-    // console.log(`Loading ${mints.length} metaplex tokens...`, {
-    //   mints,
-    // });
+    console.log(`Loading ${mints.length} metaplex tokens...`, {
+      mints,
+    });
 
     const tokens: {
       id: string;
@@ -99,13 +99,47 @@ export function createMetaplexTokenRepo(
     }
 
     /**
+     * Load metadata
+     */
+    const masterEditionsToLoad = tokens
+      .filter((value) => value.token.metadata?.tokenStandard === 3)
+      .map((value) => {
+        const edition = value.token.edition as PrintEditionAccountData;
+
+        return edition.parent;
+      });
+
+    // const masterEditions = await accountsRepo.loadMany(
+    //   masterEditionsToLoad.map((pk) => pk.toString())
+    // );
+
+    // for (const masterEdition of masterEditions) {
+    //   if (!masterEdition) continue;
+    //   else if (masterEdition instanceof Error) continue;
+
+    //   const edition = parseOriginalOrPrintEditionAccount(masterEdition as any).data as OriginalEditionAccountData;
+
+    //   for (const token of tokens) {
+    //     if (token.token.edition) {
+    //       const edition = token.token.edition as PrintEditionAccountData;
+    //       const tokenMasterEdition = edition.parent;
+
+    //       if (edition.
+    //     }
+    //   }
+    // }
+    // const masterEditions = await console.log("Master editions", {
+    //   masterEditionsToLoad,
+    // });
+
+    /**
      * Load external metadata
      */
-    await promiseSequence(
+    await asyncSequence(
       chunk(
         tokens.filter((token) => !isNil(token.token.metadata?.data.uri)),
         20
-      ).map(async (batch) => {
+      ).map((batch) => async () => {
         const results = await Promise.all(
           batch.map(async (token) => {
             const uri = trimNull(token.token.metadata!.data.uri);

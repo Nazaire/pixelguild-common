@@ -1,6 +1,9 @@
 import {
+  findMasterEditionV2Pda,
   MetadataAccount,
+  OriginalEditionAccountData,
   OriginalOrPrintEditionAccountData,
+  PrintEditionAccountData,
 } from "@metaplex-foundation/js";
 import { TokenStandard } from "@metaplex-foundation/mpl-token-metadata";
 import { RawMint } from "@solana/spl-token";
@@ -19,6 +22,7 @@ export interface IMetaplexToken {
   // mint: RawMint | null;
   metadata: MetadataAccount["data"] | null;
   edition: OriginalOrPrintEditionAccountData | null;
+  masterEdition?: OriginalEditionAccountData | null;
 
   externalMetadata?: any;
 }
@@ -87,5 +91,19 @@ export class MetaplexToken implements IMetaplexToken {
 
   attribute(traitType: string) {
     return find(this.attributes, { trait_type: traitType })?.value || null;
+  }
+
+  isPrintOf(mint: PublicKey) {
+    if (!this.edition) return false;
+
+    const masterEdition = findMasterEditionV2Pda(mint);
+
+    if (get(this.edition, "edition")) {
+      const edition = this.edition as PrintEditionAccountData;
+
+      return edition.parent.equals(masterEdition);
+    }
+
+    return false;
   }
 }
