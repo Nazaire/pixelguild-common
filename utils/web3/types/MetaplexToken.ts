@@ -106,4 +106,11 @@ export class MetaplexToken implements IMetaplexToken {
 
     return false;
   }
+
+  extension<T>(key: string): T | null {
+    // if (!this.externalMetadata?.attributes) return null;
+    return (
+      (get(this.externalMetadata, ["extensions", key]) as T | undefined) || null
+    );
+  }
 }
