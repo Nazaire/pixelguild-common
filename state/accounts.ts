@@ -17,6 +17,11 @@ export const MainnetAccounts = definePixelGuildAccounts({
 
   PIXEL: new PublicKey("9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"),
   GOLD: new PublicKey("BsYZmmEXPVPA31aax5pawZtYppoGiowPckxTcituaUCY"),
+
+  ITEMS_COLLECTION: new PublicKey(
+    "25D9qsLuyPQYnzFcuveD2U3u4cyaCEprYj8bfDH3q9YH"
+  ),
+
   GOLDEN_KEY_NFT_CREATOR: new PublicKey(
     "9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"
   ),
@@ -27,6 +32,18 @@ export const MainnetAccounts = definePixelGuildAccounts({
 
   CHARACTER_MASTER_EDITION_GOLDEN_BABA: new PublicKey(
     "3HkzdLidV7NEi9zZETMwKEDKxCfNZCJC3ZVekEGgCAS9"
+  ),
+  CHARACTER_MASTER_EDITION_YAGA: new PublicKey(
+    "37y51by5cBcWq1XaCCccTquQMkHva1NJ5WG7kNrJpmhv"
+  ),
+  CHARACTER_MASTER_EDITION_GORC: new PublicKey(
+    "4jobnuCEeFXPt1WCezM8rqzgEDyRhwxCAJtmASD7s5cG"
+  ),
+  CHARACTER_MASTER_EDITION_KENNY: new PublicKey(
+    "HWwGnn1M39RN31HTj34T9wkJyUBmp1TXAPho5ZhqX7DQ"
+  ),
+  CHARACTER_MASTER_EDITION_LILA: new PublicKey(
+    "Ek2BVbegCiiwQFkgkGBnmHJ22DNCr9SPrk4LU7KKN9rU"
   ),
 });
 
@@ -43,6 +60,10 @@ export const DevnetAccounts = definePixelGuildAccountsWithDefaults(
     PIXEL: new PublicKey("8XcGFqZiNFKhGbkRTvY84mAyMJkjChQkczuvx5UaMc9J"),
     GOLD: new PublicKey("DFkEanPARiN5mJ3PXQtJ9KqYLCGGYA7iH2ja9AwEPaut"),
 
+    ITEMS_COLLECTION: new PublicKey(
+      "25D9qsLuyPQYnzFcuveD2U3u4cyaCEprYj8bfDH3q9YH"
+    ),
+
     GOLDEN_KEY_NFT_CREATOR: new PublicKey(
       "BdcKeLk54HCB2n1v8v7iG2NpFrxjbpoXi9qXta23ALHM"
     ),
@@ -55,6 +76,18 @@ export const DevnetAccounts = definePixelGuildAccountsWithDefaults(
 
     CHARACTER_MASTER_EDITION_GOLDEN_BABA: new PublicKey(
       "3HkzdLidV7NEi9zZETMwKEDKxCfNZCJC3ZVekEGgCAS9"
+    ),
+    CHARACTER_MASTER_EDITION_YAGA: new PublicKey(
+      "37y51by5cBcWq1XaCCccTquQMkHva1NJ5WG7kNrJpmhv"
+    ),
+    CHARACTER_MASTER_EDITION_GORC: new PublicKey(
+      "4jobnuCEeFXPt1WCezM8rqzgEDyRhwxCAJtmASD7s5cG"
+    ),
+    CHARACTER_MASTER_EDITION_KENNY: new PublicKey(
+      "HWwGnn1M39RN31HTj34T9wkJyUBmp1TXAPho5ZhqX7DQ"
+    ),
+    CHARACTER_MASTER_EDITION_LILA: new PublicKey(
+      "Ek2BVbegCiiwQFkgkGBnmHJ22DNCr9SPrk4LU7KKN9rU"
     ),
   }
 );
