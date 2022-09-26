@@ -13,37 +13,37 @@ export const MainnetAccounts = definePixelGuildAccounts({
   AUTHORITY: new PublicKey("BcFfivrRBDk7Sbobif1vLcpXwKiHsQHHaBgsbZ9QEsaX"),
 
   // TODO: REPLACE (REVIEW ALL TOKENS)
-  DRAIN: new PublicKey("HCQLqRGPZTaPpSo5hw5ipcZDH3TSYYYBNyKJhimLvM57"),
+  DRAIN: new PublicKey("HSpJeobZxS3gEeGuJD1ggB8WNmdokASJf27TL5w6giGC"),
 
-  PIXEL: new PublicKey("9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"),
+  PIXEL: new PublicKey("9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"), // todo: mainnet
   GOLD: new PublicKey("BsYZmmEXPVPA31aax5pawZtYppoGiowPckxTcituaUCY"),
 
   ITEMS_COLLECTION: new PublicKey(
-    "25D9qsLuyPQYnzFcuveD2U3u4cyaCEprYj8bfDH3q9YH"
+    "28Wkb7Ai9cTDaKFhVSxwcNBjvtcU6EBe6YEvn18ceaTY"
   ),
 
   GOLDEN_KEY_NFT_CREATOR: new PublicKey(
-    "9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"
+    "sFgDh7LbMUkjnXDy1ViYyTmizFKw9P4bPRHx2UaUt4F"
   ),
-  GOLDEN_KEY: new PublicKey("9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"),
+  GOLDEN_KEY: new PublicKey("9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"), // todo: mainnet
   LOOT_CHEST_GOLDEN: new PublicKey(
-    "Ffv5ty4k1Esbw3FUhj6v6amscFTozD6gbJCvAqombxfo"
+    "HnXoSyPPJWMRZz9foG963jFGAkT3T5BF6AFGaYz2hc8y"
   ),
 
   CHARACTER_MASTER_EDITION_GOLDEN_BABA: new PublicKey(
-    "3HkzdLidV7NEi9zZETMwKEDKxCfNZCJC3ZVekEGgCAS9"
+    "5JuCjAAxpeyTbv6b9tp9hwim1spWxuGq6Zno1WGqMRGv"
   ),
   CHARACTER_MASTER_EDITION_YAGA: new PublicKey(
-    "37y51by5cBcWq1XaCCccTquQMkHva1NJ5WG7kNrJpmhv"
+    "37y51by5cBcWq1XaCCccTquQMkHva1NJ5WG7kNrJpmhv" // todo: mainnet
   ),
   CHARACTER_MASTER_EDITION_GORC: new PublicKey(
-    "4jobnuCEeFXPt1WCezM8rqzgEDyRhwxCAJtmASD7s5cG"
+    "4jobnuCEeFXPt1WCezM8rqzgEDyRhwxCAJtmASD7s5cG" // todo: mainnet
   ),
   CHARACTER_MASTER_EDITION_KENNY: new PublicKey(
-    "HWwGnn1M39RN31HTj34T9wkJyUBmp1TXAPho5ZhqX7DQ"
+    "HWwGnn1M39RN31HTj34T9wkJyUBmp1TXAPho5ZhqX7DQ" // todo: mainnet
   ),
   CHARACTER_MASTER_EDITION_LILA: new PublicKey(
-    "Ek2BVbegCiiwQFkgkGBnmHJ22DNCr9SPrk4LU7KKN9rU"
+    "Ek2BVbegCiiwQFkgkGBnmHJ22DNCr9SPrk4LU7KKN9rU" // todo: mainnet
   ),
 });
 

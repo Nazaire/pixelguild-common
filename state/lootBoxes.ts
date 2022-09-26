@@ -16,7 +16,7 @@ const LootBoxDefinitions: ILootBoxConfig[] = [
         creator: useAccount(
           PixelGuildAccount.GOLDEN_KEY_NFT_CREATOR
         ).toString(),
-        method: "burn",
+        method: "transfer",
         amount: 1,
       },
       {
@@ -27,7 +27,7 @@ const LootBoxDefinitions: ILootBoxConfig[] = [
     ],
     rewards: [
       {
-        weight: 33,
+        weight: 10,
         reward: {
           type: "edition",
           masterEdition: useAccount(
@@ -36,9 +36,11 @@ const LootBoxDefinitions: ILootBoxConfig[] = [
         },
       },
       {
-        weight: 67,
+        weight: 90,
         reward: {
-          type: "empty",
+          type: "mint",
+          token: useAccount(PixelGuildAccount.GOLD).toString(),
+          amount: 100,
         },
       },
     ],
