@@ -34,16 +34,16 @@ export const MainnetAccounts = definePixelGuildAccounts({
     "5JuCjAAxpeyTbv6b9tp9hwim1spWxuGq6Zno1WGqMRGv"
   ),
   CHARACTER_MASTER_EDITION_YAGA: new PublicKey(
-    "37y51by5cBcWq1XaCCccTquQMkHva1NJ5WG7kNrJpmhv" // todo: mainnet
+    "ARNSvrhppiS6znDQjaTEAZGrwjP1n6mh2uebGwjxPYB3"
   ),
   CHARACTER_MASTER_EDITION_GORC: new PublicKey(
-    "4jobnuCEeFXPt1WCezM8rqzgEDyRhwxCAJtmASD7s5cG" // todo: mainnet
+    "5VdqHD5Ja2XBjHuFzXLSf1J5N67HX3QCvrxzADJMxJ5"
   ),
   CHARACTER_MASTER_EDITION_KENNY: new PublicKey(
-    "HWwGnn1M39RN31HTj34T9wkJyUBmp1TXAPho5ZhqX7DQ" // todo: mainnet
+    "GZQiw8QBuoM4AxaP78NxgWpRNB5kZTRUQmsekJy7RpFs"
   ),
   CHARACTER_MASTER_EDITION_LILA: new PublicKey(
-    "Ek2BVbegCiiwQFkgkGBnmHJ22DNCr9SPrk4LU7KKN9rU" // todo: mainnet
+    "FYCUDKyFEy8wEZ2iCEaunojKLV8K45gAmnArjEGcAjHd"
   ),
 });
 
