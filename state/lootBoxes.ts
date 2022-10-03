@@ -54,7 +54,7 @@ const LootBoxDefinitions: ILootBoxConfig[] = [
           PixelGuildAccount.GOLDEN_KEY_NFT_CREATOR
         ).toString(),
         method: "transfer",
-        amount: 4,
+        amount: 10,
       },
       {
         token: useAccount(PixelGuildAccount.LOOT_CHEST_GOLDEN).toString(),
