@@ -25,7 +25,12 @@ export function createMetaplexTokenRepo(
   accountsRepo: DataLoader<
     string,
     AccountInfo<Buffer> | null
-  > = createAccountsRepo()
+  > = createAccountsRepo(),
+  options?: {
+    loadExternalMetadata:
+      | boolean
+      | ((token: Partial<IMetaplexToken>) => boolean);
+  }
 ) {
   const loader = new DataLoader<string, MetaplexToken | null>(async (mints) => {
     console.log(`Loading ${mints.length} metaplex tokens...`, {
@@ -101,13 +106,13 @@ export function createMetaplexTokenRepo(
     /**
      * Load metadata
      */
-    const masterEditionsToLoad = tokens
-      .filter((value) => value.token.metadata?.tokenStandard === 3)
-      .map((value) => {
-        const edition = value.token.edition as PrintEditionAccountData;
+    // const masterEditionsToLoad = tokens
+    //   .filter((value) => value.token.metadata?.tokenStandard === 3)
+    //   .map((value) => {
+    //     const edition = value.token.edition as PrintEditionAccountData;
 
-        return edition.parent;
-      });
+    //     return edition.parent;
+    //   });
 
     // const masterEditions = await accountsRepo.loadMany(
     //   masterEditionsToLoad.map((pk) => pk.toString())
@@ -137,7 +142,18 @@ export function createMetaplexTokenRepo(
      */
     await asyncSequence(
       chunk(
-        tokens.filter((token) => !isNil(token.token.metadata?.data.uri)),
+        tokens.filter((token) => {
+          if (options?.loadExternalMetadata === false) return false;
+          else if (typeof options?.loadExternalMetadata === "function") {
+            if (!options.loadExternalMetadata(token.token)) return false;
+            // loadExternalMetadata() === true
+            // contd
+          } else {
+            // loadExternalMetadata === true
+            // contd
+          }
+          return !isNil(token.token.metadata?.data.uri);
+        }),
         20
       ).map((batch) => async () => {
         const results = await Promise.all(
