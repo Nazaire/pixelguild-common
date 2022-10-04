@@ -5,4 +5,5 @@ export const StoryGameLevelSequence = [
   StoryGameLevelIdentifier.FOREST,
   StoryGameLevelIdentifier.SEWER,
   StoryGameLevelIdentifier.DUNGEON,
+  StoryGameLevelIdentifier.SWAMP,
 ] as const;

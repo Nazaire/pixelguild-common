@@ -3,4 +3,5 @@ export enum StoryGameLevelIdentifier {
   FOREST = "FOREST",
   SEWER = "SEWER",
   DUNGEON = "DUNGEON",
+  SWAMP = "SWAMP",
 }

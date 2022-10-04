@@ -109,6 +109,7 @@ enum StoryGameLevelIdentifier {
   DUNGEON
   FOREST
   SEWER
+  SWAMP
   TUTORIAL
 }
 
