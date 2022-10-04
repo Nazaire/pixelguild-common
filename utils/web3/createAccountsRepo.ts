@@ -19,10 +19,10 @@ export function createAccountsRepo(
     /**
      * Fetch mint, metadata and edition accounts
      */
-    if (options?.choke) await options.choke(1);
     const accountsWithInfo = flatMap(
       await asyncSequence(
         chunk(accounts, 100).map((accounts) => async () => {
+          if (options?.choke) await options.choke(1);
           const results = await connection.getMultipleAccountsInfo(
             accounts.map((account) => new PublicKey(account))
           );

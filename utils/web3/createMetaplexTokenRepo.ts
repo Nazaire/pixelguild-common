@@ -33,10 +33,6 @@ export function createMetaplexTokenRepo(
   }
 ) {
   const loader = new DataLoader<string, MetaplexToken | null>(async (mints) => {
-    console.log(`Loading ${mints.length} metaplex tokens...`, {
-      mints,
-    });
-
     const tokens: {
       id: string;
       mint: PublicKey;
