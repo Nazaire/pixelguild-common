@@ -58,6 +58,7 @@ type Mutation {
 }
 
 type Query {
+  ascensionStake(blockhash: String!, mint: String!, ritualMints: [String!], signature: String!, user: String!): String!
   goldBucket(userId: ID!): GoldBucket
   guildiesCollection(userId: ID!): UserGuildieCollectionAggregate
   lootBoxReward(id: Int!): LootBoxReward!

@@ -1,0 +1,15 @@
+query AscensionStake(
+  $blockhash: String!
+  $signature: String!
+  $user: String!
+  $mint: String!
+  $ritualMints: [String!]
+) {
+  ascensionStake(
+    blockhash: $blockhash
+    signature: $signature
+    user: $user
+    mint: $mint
+    ritualMints: $ritualMints
+  )
+}

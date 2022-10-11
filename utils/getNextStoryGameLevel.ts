@@ -1,6 +1,6 @@
 import { indexOf } from "lodash";
 import { StoryGameLevelIdentifier } from "../types/StoryGameLevelIdentifier.enum";
-import { StoryGameLevelSequence } from "./StoryGameLevelSequence";
+import { StoryGameLevelSequence } from "../state/StoryGameLevelSequence";
 
 export function getNextStoryGameLevel(level: StoryGameLevelIdentifier) {
   const i = indexOf(StoryGameLevelSequence, level);

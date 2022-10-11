@@ -4,7 +4,19 @@ export class IGuildieInfo {
   name!: string;
 
   race!: string;
+
+  rank!: number;
+
+  rarity!:
+    | "king"
+    | "mythic"
+    | "legendary"
+    | "epic"
+    | "rare"
+    | "uncommon"
+    | "common";
+
   raceRank!: number;
 
-  guildPower!: number;
+  capabilities!: "ascension"[];
 }

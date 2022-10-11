@@ -45,6 +45,13 @@ export const MainnetAccounts = definePixelGuildAccounts({
   CHARACTER_MASTER_EDITION_LILA: new PublicKey(
     "FYCUDKyFEy8wEZ2iCEaunojKLV8K45gAmnArjEGcAjHd"
   ),
+
+  ASCENSION_STAKE_POOL: new PublicKey(
+    "FYCUDKyFEy8wEZ2iCEaunojKLV8K45gAmnArjEGcAjHd" // todo: mainnet
+  ),
+  STAKING_AUTHORITY: new PublicKey(
+    "2Y5pqEkUrtA72LDKmrkG6155LxYeXd6eumePXpdcJptX" // todo: mainnet
+  ),
 });
 
 /**
@@ -88,6 +95,13 @@ export const DevnetAccounts = definePixelGuildAccountsWithDefaults(
     ),
     CHARACTER_MASTER_EDITION_LILA: new PublicKey(
       "Ek2BVbegCiiwQFkgkGBnmHJ22DNCr9SPrk4LU7KKN9rU"
+    ),
+
+    ASCENSION_STAKE_POOL: new PublicKey(
+      "HcZ11JpoqJTYZCukkENFHDQzq5stLvEsiWs6Yf1UaUia" // todo: mainnet
+    ),
+    STAKING_AUTHORITY: new PublicKey(
+      "2Y5pqEkUrtA72LDKmrkG6155LxYeXd6eumePXpdcJptX" // todo: mainnet
     ),
   }
 );
