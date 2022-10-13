@@ -13,7 +13,16 @@ export async function waitForConfirmation(
     retry?: AsyncRetry.Options;
   }
 ) {
-  return await AsyncRetry(async () => {
-    return await connection.confirmTransaction(strategy, options?.commitment);
-  }, options?.retry);
+  return await AsyncRetry(
+    async () => {
+      const result = await connection.getTransaction(strategy.signature, {
+        commitment: "confirmed",
+      });
+      if (!result) throw new Error("Transaction couldn't be confirmed");
+    },
+    {
+      retries: 5,
+      ...options?.retry,
+    }
+  );
 }
