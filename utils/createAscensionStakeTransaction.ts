@@ -1,9 +1,5 @@
-import { tryGetAccount } from "@cardinal/common";
-import {
-  findRewardDistributorId,
-  findRewardEntryId,
-} from "@nazaire/cardinal-staking/dist/cjs/programs/rewardDistributor/pda";
 import { useAccount } from "@common/state/accounts";
+import { IGuildieInfo } from "@common/types/IGuildieInfo";
 import { PixelGuildAccount } from "@common/types/PixelGuildAccount.enum";
 import { findAssociatedTokenAccountPda } from "@metaplex-foundation/js";
 import {
@@ -11,50 +7,56 @@ import {
   updateRewardEntry,
 } from "@nazaire/cardinal-staking/dist/cjs/programs/rewardDistributor/instruction";
 import {
-  getStakeAuthorization,
-  getStakeEntry,
-} from "@nazaire/cardinal-staking/dist/cjs/programs/stakePool/accounts";
-import { getRewardEntry } from "@nazaire/cardinal-staking/dist/cjs/programs/rewardDistributor/accounts";
+  findRewardDistributorId,
+  findRewardEntryId,
+} from "@nazaire/cardinal-staking/dist/cjs/programs/rewardDistributor/pda";
+import { ReceiptType } from "@nazaire/cardinal-staking/dist/cjs/programs/stakePool";
 import {
   authorizeStakeEntry,
   deauthorizeStakeEntry,
 } from "@nazaire/cardinal-staking/dist/cjs/programs/stakePool/instruction";
 import { findStakeAuthorizationId } from "@nazaire/cardinal-staking/dist/cjs/programs/stakePool/pda";
 import {
+  withClaimReceiptMint,
   withInitStakeEntry,
   withStake,
 } from "@nazaire/cardinal-staking/dist/cjs/programs/stakePool/transaction";
 import { findStakeEntryIdFromMint } from "@nazaire/cardinal-staking/dist/cjs/programs/stakePool/utils";
-import { Wallet } from "@project-serum/anchor";
+import type { Wallet } from "@saberhq/solana-contrib";
 import { createTransferInstruction } from "@solana/spl-token";
-import { Connection, Keypair, PublicKey, Transaction } from "@solana/web3.js";
+import {
+  AccountInfo,
+  Connection,
+  PublicKey,
+  Transaction,
+} from "@solana/web3.js";
 import { BN } from "bn.js";
 import { pick } from "lodash";
-import { IGuildieInfo } from "@common/types/IGuildieInfo";
 
 export async function createAscensionStakeTransaction(params: {
+  loader: (pubkey: PublicKey) => Promise<AccountInfo<Buffer> | Error | null>;
   blockhash: string;
   connection: Connection;
-  wallet: Wallet;
   mint: PublicKey;
   rarity: IGuildieInfo["rarity"];
   payer: PublicKey;
   paymentAmount: number;
 }) {
   console.log({
-    createAscensionStakeTransaction: JSON.stringify(
-      pick(params, ["blockhash", "mint", "payer", "paymentAmount"]),
-      null,
-      4
-    ),
+    createAscensionStakeTransaction: pick(params, [
+      "blockhash",
+      "mint",
+      "payer",
+      "paymentAmount",
+    ]),
   });
   const connection = params.connection;
-  const authorityWallet = new Wallet({
+  const authorityWallet = {
     publicKey: useAccount(PixelGuildAccount.STAKING_AUTHORITY),
-  } as Keypair);
-  const payerWallet = new Wallet({
+  } as Wallet;
+  const payerWallet = {
     publicKey: params.payer,
-  } as Keypair);
+  } as Wallet;
 
   const stakePoolId = useAccount(PixelGuildAccount.ASCENSION_STAKE_POOL);
 
@@ -99,11 +101,16 @@ export async function createAscensionStakeTransaction(params: {
     stakeEntryId
   );
 
-  // 1. AUTHORIZE THE MINT
+  // 0. LOAD ACCOUNTS (NEED TO KNOW IF WE MUST CREATE THEM)
 
-  const authorizeStakeEntryData = await tryGetAccount(() =>
-    getStakeAuthorization(connection, stakeAuthorizationId)
-  );
+  const [authorizeStakeEntryData, stakeEntryData, rewardEntryData] =
+    await Promise.all([
+      params.loader(stakeAuthorizationId),
+      params.loader(stakeEntryId),
+      params.loader(rewardEntryId),
+    ] as const);
+
+  // 1. AUTHORIZE THE MINT
 
   if (!authorizeStakeEntryData)
     transaction.add(
@@ -117,9 +124,6 @@ export async function createAscensionStakeTransaction(params: {
 
   // 2. INIT THE STAKE ENTRY
 
-  const stakeEntryData = await tryGetAccount(() =>
-    getStakeEntry(connection, stakeEntryId)
-  );
   if (!stakeEntryData) {
     await withInitStakeEntry(transaction, connection, payerWallet, {
       stakePoolId: stakePoolId,
@@ -128,10 +132,6 @@ export async function createAscensionStakeTransaction(params: {
   }
 
   // 3. INIT THE REWARD ENTRY
-
-  const rewardEntryData = await tryGetAccount(() =>
-    getRewardEntry(connection, rewardEntryId)
-  );
 
   if (!rewardEntryData) {
     transaction.add(
@@ -163,6 +163,16 @@ export async function createAscensionStakeTransaction(params: {
     originalMintId: params.mint,
     userOriginalMintTokenAccountId: mintTokenAccountId,
     amount: new BN(1),
+  });
+
+  // 6. CLAIM ORIGINAL MINT RECEIPT
+
+  await withClaimReceiptMint(transaction, connection, payerWallet, {
+    stakePoolId: stakePoolId,
+    stakeEntryId: stakeEntryId,
+    originalMintId: params.mint,
+    receiptMintId: params.mint,
+    receiptType: ReceiptType.Original,
   });
 
   // 6. DEAUTHORIZE THE MINT
