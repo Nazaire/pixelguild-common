@@ -52,6 +52,14 @@ export async function createAscensionStakeTransaction(params: {
     },
   });
 
+  let debug: any = {
+    blockhash: params.blockhash,
+    mint: params.mint.toString(),
+    payer: params.payer.toString(),
+    rarity: params.rarity,
+    paymentAmount: params.paymentAmount,
+  };
+
   const connection = params.connection;
   const authorityWallet = {
     publicKey: useAccount(PixelGuildAccount.STAKING_AUTHORITY),
@@ -73,6 +81,8 @@ export async function createAscensionStakeTransaction(params: {
     pixel,
     useAccount(PixelGuildAccount.DRAIN)
   );
+  debug.transfer_souce = source.toString();
+  debug.transfer_destination = destination.toString();
   transaction.add(
     createTransferInstruction(
       source,
@@ -114,7 +124,8 @@ export async function createAscensionStakeTransaction(params: {
 
   // 1. AUTHORIZE THE MINT
 
-  if (!authorizeStakeEntryData)
+  if (!authorizeStakeEntryData) {
+    debug.create_authorize_stake_entry = true;
     transaction.add(
       await authorizeStakeEntry(connection, authorityWallet, {
         stakePoolId,
@@ -123,10 +134,12 @@ export async function createAscensionStakeTransaction(params: {
         payer: params.payer,
       })
     );
+  }
 
   // 2. INIT THE STAKE ENTRY
 
   if (!stakeEntryData) {
+    debug.init_stake_entry = true;
     await withInitStakeEntry(transaction, connection, payerWallet, {
       stakePoolId: stakePoolId,
       originalMintId: params.mint,
@@ -136,6 +149,7 @@ export async function createAscensionStakeTransaction(params: {
   // 3. INIT THE REWARD ENTRY
 
   if (!rewardEntryData) {
+    debug.init_reward_entry = true;
     transaction.add(
       await initRewardEntry(connection, authorityWallet, {
         stakeEntryId,
@@ -150,6 +164,7 @@ export async function createAscensionStakeTransaction(params: {
 
   const multiplier = getAscensionMultiplierForRarity(params.rarity);
 
+  debug.multiplier = multiplier;
   transaction.add(
     await updateRewardEntry(connection, authorityWallet, {
       stakePoolId,
