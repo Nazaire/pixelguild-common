@@ -46,7 +46,7 @@ export async function createAscensionStakeTransaction(params: {
     createAscensionStakeTransaction: {
       blockhash: params.blockhash,
       mint: params.mint.toString(),
-      payer: params.mint.toString(),
+      payer: params.payer.toString(),
       rarity: params.rarity,
       paymentAmount: params.paymentAmount,
     },
