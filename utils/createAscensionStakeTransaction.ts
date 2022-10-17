@@ -43,13 +43,15 @@ export async function createAscensionStakeTransaction(params: {
   paymentAmount: number;
 }) {
   console.log({
-    createAscensionStakeTransaction: pick(params, [
-      "blockhash",
-      "mint",
-      "payer",
-      "paymentAmount",
-    ]),
+    createAscensionStakeTransaction: {
+      blockhash: params.blockhash,
+      mint: params.mint.toString(),
+      payer: params.mint.toString(),
+      rarity: params.rarity,
+      paymentAmount: params.paymentAmount,
+    },
   });
+
   const connection = params.connection;
   const authorityWallet = {
     publicKey: useAccount(PixelGuildAccount.STAKING_AUTHORITY),
