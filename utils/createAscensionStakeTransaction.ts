@@ -52,7 +52,7 @@ export async function createAscensionStakeTransaction(params: {
     },
   });
 
-  let debug: any = {
+  const debug: any = {
     blockhash: params.blockhash,
     mint: params.mint.toString(),
     payer: params.payer.toString(),
@@ -199,6 +199,8 @@ export async function createAscensionStakeTransaction(params: {
       originalMintId: params.mint,
     })
   );
+
+  console.log("createAscensionStakeTransaction", debug);
 
   return transaction;
 }
