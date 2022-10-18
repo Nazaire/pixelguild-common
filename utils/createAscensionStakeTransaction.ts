@@ -5,23 +5,23 @@ import { findAssociatedTokenAccountPda } from "@metaplex-foundation/js";
 import {
   initRewardEntry,
   updateRewardEntry,
-} from "@nazaire/cardinal-staking/dist/cjs/programs/rewardDistributor/instruction";
+} from "@nazaire/pixelguild-staking/dist/cjs/programs/rewardDistributor/instruction";
 import {
   findRewardDistributorId,
   findRewardEntryId,
-} from "@nazaire/cardinal-staking/dist/cjs/programs/rewardDistributor/pda";
-import { ReceiptType } from "@nazaire/cardinal-staking/dist/cjs/programs/stakePool";
+} from "@nazaire/pixelguild-staking/dist/cjs/programs/rewardDistributor/pda";
+import { ReceiptType } from "@nazaire/pixelguild-staking/dist/cjs/programs/stakePool";
 import {
   authorizeStakeEntry,
   deauthorizeStakeEntry,
-} from "@nazaire/cardinal-staking/dist/cjs/programs/stakePool/instruction";
-import { findStakeAuthorizationId } from "@nazaire/cardinal-staking/dist/cjs/programs/stakePool/pda";
+} from "@nazaire/pixelguild-staking/dist/cjs/programs/stakePool/instruction";
+import { findStakeAuthorizationId } from "@nazaire/pixelguild-staking/dist/cjs/programs/stakePool/pda";
 import {
   withClaimReceiptMint,
   withInitStakeEntry,
   withStake,
-} from "@nazaire/cardinal-staking/dist/cjs/programs/stakePool/transaction";
-import { findStakeEntryIdFromMint } from "@nazaire/cardinal-staking/dist/cjs/programs/stakePool/utils";
+} from "@nazaire/pixelguild-staking/dist/cjs/programs/stakePool/transaction";
+import { findStakeEntryIdFromMint } from "@nazaire/pixelguild-staking/dist/cjs/programs/stakePool/utils";
 import type { Wallet } from "@saberhq/solana-contrib";
 import { createTransferInstruction } from "@solana/spl-token";
 import {
