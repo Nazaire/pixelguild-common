@@ -12,10 +12,9 @@ import { PublicKey } from "@solana/web3.js";
 export const MainnetAccounts = definePixelGuildAccounts({
   AUTHORITY: new PublicKey("BcFfivrRBDk7Sbobif1vLcpXwKiHsQHHaBgsbZ9QEsaX"),
 
-  // TODO: REPLACE (REVIEW ALL TOKENS)
   DRAIN: new PublicKey("HSpJeobZxS3gEeGuJD1ggB8WNmdokASJf27TL5w6giGC"),
 
-  PIXEL: new PublicKey("9KwqMGk5sF4hqCiqM4na9u2bieZjcjkxwxYiF2bne6DS"), // todo: mainnet
+  PIXEL: new PublicKey("9W5dY9dEt2J6TjC5Gg4dpi3EmpGsQHhLPsDE62RgGuKy"),
   GOLD: new PublicKey("BsYZmmEXPVPA31aax5pawZtYppoGiowPckxTcituaUCY"),
 
   ITEMS_COLLECTION: new PublicKey(
@@ -47,10 +46,10 @@ export const MainnetAccounts = definePixelGuildAccounts({
   ),
 
   ASCENSION_STAKE_POOL: new PublicKey(
-    "FYCUDKyFEy8wEZ2iCEaunojKLV8K45gAmnArjEGcAjHd" // todo: mainnet
+    "CUjUbd5W4A42TyM7nWkXKdegsX5WypN6C7a6eoWYsx45"
   ),
   STAKING_AUTHORITY: new PublicKey(
-    "2Y5pqEkUrtA72LDKmrkG6155LxYeXd6eumePXpdcJptX" // todo: mainnet
+    "2VvZEMdocCw8jLPXsoZcMsygdusRcP7FaL3s7mPEyXvi"
   ),
 });
 
@@ -98,10 +97,10 @@ export const DevnetAccounts = definePixelGuildAccountsWithDefaults(
     ),
 
     ASCENSION_STAKE_POOL: new PublicKey(
-      "6u4bdaBgzoCQ1HGYVgYVm11F3CPZdEo13uWBTJgWuuWN" // todo: mainnet
+      "6u4bdaBgzoCQ1HGYVgYVm11F3CPZdEo13uWBTJgWuuWN"
     ),
     STAKING_AUTHORITY: new PublicKey(
-      "2Y5pqEkUrtA72LDKmrkG6155LxYeXd6eumePXpdcJptX" // todo: mainnet
+      "2Y5pqEkUrtA72LDKmrkG6155LxYeXd6eumePXpdcJptX"
     ),
   }
 );
