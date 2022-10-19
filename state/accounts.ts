@@ -98,7 +98,7 @@ export const DevnetAccounts = definePixelGuildAccountsWithDefaults(
     ),
 
     ASCENSION_STAKE_POOL: new PublicKey(
-      "HcZ11JpoqJTYZCukkENFHDQzq5stLvEsiWs6Yf1UaUia" // todo: mainnet
+      "6u4bdaBgzoCQ1HGYVgYVm11F3CPZdEo13uWBTJgWuuWN" // todo: mainnet
     ),
     STAKING_AUTHORITY: new PublicKey(
       "2Y5pqEkUrtA72LDKmrkG6155LxYeXd6eumePXpdcJptX" // todo: mainnet
