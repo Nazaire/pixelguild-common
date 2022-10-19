@@ -184,13 +184,13 @@ export async function createAscensionStakeTransaction(params: {
 
   // 6. CLAIM ORIGINAL MINT RECEIPT
 
-  await withClaimReceiptMint(transaction, connection, payerWallet, {
-    stakePoolId: stakePoolId,
-    stakeEntryId: stakeEntryId,
-    originalMintId: params.mint,
-    receiptMintId: params.mint,
-    receiptType: ReceiptType.Original,
-  });
+  // await withClaimReceiptMint(transaction, connection, payerWallet, {
+  //   stakePoolId: stakePoolId,
+  //   stakeEntryId: stakeEntryId,
+  //   originalMintId: params.mint,
+  //   receiptMintId: params.mint,
+  //   receiptType: ReceiptType.Original,
+  // });
 
   // 6. DEAUTHORIZE THE MINT
   transaction.add(
@@ -202,7 +202,7 @@ export async function createAscensionStakeTransaction(params: {
 
   console.log("createAscensionStakeTransaction", debug);
 
-  return transaction;
+  return { transaction, stakeEntryId };
 }
 
 export function getAscensionMultiplierForRarity(
