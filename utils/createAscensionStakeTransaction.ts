@@ -42,16 +42,6 @@ export async function createAscensionStakeTransaction(params: {
   payer: PublicKey;
   paymentAmount: number;
 }) {
-  console.log({
-    createAscensionStakeTransaction: {
-      blockhash: params.blockhash,
-      mint: params.mint.toString(),
-      payer: params.payer.toString(),
-      rarity: params.rarity,
-      paymentAmount: params.paymentAmount,
-    },
-  });
-
   const debug: any = {
     blockhash: params.blockhash,
     mint: params.mint.toString(),
@@ -184,21 +174,22 @@ export async function createAscensionStakeTransaction(params: {
 
   // 6. CLAIM ORIGINAL MINT RECEIPT
 
-  // await withClaimReceiptMint(transaction, connection, payerWallet, {
-  //   stakePoolId: stakePoolId,
-  //   stakeEntryId: stakeEntryId,
-  //   originalMintId: params.mint,
-  //   receiptMintId: params.mint,
-  //   receiptType: ReceiptType.Original,
-  // });
+  await withClaimReceiptMint(transaction, connection, payerWallet, {
+    stakePoolId: stakePoolId,
+    stakeEntryId: stakeEntryId,
+    originalMintId: params.mint,
+    receiptMintId: params.mint,
+    receiptType: ReceiptType.Original,
+  });
 
   // 6. DEAUTHORIZE THE MINT
-  transaction.add(
-    await deauthorizeStakeEntry(connection, authorityWallet, {
-      stakePoolId,
-      originalMintId: params.mint,
-    })
-  );
+  // todo: implement this later via a worker for unstaked tokens, you need to also close the stake entry
+  // transaction.add(
+  //   await deauthorizeStakeEntry(connection, authorityWallet, {
+  //     stakePoolId,
+  //     originalMintId: params.mint,
+  //   })
+  // );
 
   console.log("createAscensionStakeTransaction", debug);
 
