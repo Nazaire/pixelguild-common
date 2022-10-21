@@ -65,6 +65,7 @@ type Query {
   newTemporaryToken: String!
   nonce: Float!
   processTokenSwapTransaction(blockHash: String!, key: String!, signature: String!, user: String!): String!
+  signGoldenKeyBurnTransaction(mints: [String!]!, user: String!): String!
   storyGameProgress(userId: ID!): StoryGameProgress
   tokenDispenser(id: TokenDispenserId!): TokenDispenser
   tokenDispenserQuote(amount: Float!, id: TokenDispenserId!): Float!

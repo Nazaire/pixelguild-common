@@ -1,0 +1,3 @@
+query SignGoldenKeyBurnTransaction($user: String!, $mints: [String!]!) {
+  signGoldenKeyBurnTransaction(user: $user, mints: $mints)
+}
