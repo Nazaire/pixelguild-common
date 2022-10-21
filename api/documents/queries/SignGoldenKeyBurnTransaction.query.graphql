@@ -3,5 +3,9 @@ query SignGoldenKeyBurnTransaction(
   $blockhash: String!
   $mints: [String!]!
 ) {
-  signGoldenKeyBurnTransaction(user: $user, mints: $mints)
+  signGoldenKeyBurnTransaction(
+    user: $user
+    mints: $mints
+    blockhash: $blockhash
+  )
 }
