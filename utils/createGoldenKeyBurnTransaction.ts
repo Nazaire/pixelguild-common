@@ -8,7 +8,7 @@ import {
 } from "@solana/spl-token";
 import { PublicKey, Transaction } from "@solana/web3.js";
 
-const GOLD_PER_GOLDEN_KEY = 1_000;
+export const GOLD_PER_GOLDEN_KEY = 1_000;
 
 /**
  * Build a transaction to mint GOLD for transferring golden keys
