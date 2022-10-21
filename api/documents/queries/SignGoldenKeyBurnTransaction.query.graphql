@@ -1,0 +1,7 @@
+query SignGoldenKeyBurnTransaction(
+  $user: String!
+  $blockhash: String!
+  $mints: [String!]!
+) {
+  signGoldenKeyBurnTransaction(user: $user, mints: $mints)
+}
