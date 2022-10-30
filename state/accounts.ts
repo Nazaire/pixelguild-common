@@ -45,6 +45,10 @@ export const MainnetAccounts = definePixelGuildAccounts({
     "FYCUDKyFEy8wEZ2iCEaunojKLV8K45gAmnArjEGcAjHd"
   ),
 
+  CHARACTER_MASTER_EDITION_BREAKPOINT_BABA: new PublicKey(
+    "Gku6hb2wZ1Rqbb3KEUPotpL96TpzC2JQxzieAMS6VSCr"
+  ),
+
   ASCENSION_STAKE_POOL: new PublicKey(
     "CUjUbd5W4A42TyM7nWkXKdegsX5WypN6C7a6eoWYsx45"
   ),
