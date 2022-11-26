@@ -1,0 +1,5 @@
+mutation LinkFractalUser($fractalToken: String!) {
+  linkFractalUser(fractalToken: $fractalToken) {
+    ...user
+  }
+}

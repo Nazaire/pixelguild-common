@@ -3,6 +3,5 @@ fragment user on User {
   createdAt
   updatedAt
   wallet
-  solCredit
-  solCreditLatestSignature
+  fractalUserId
 }
