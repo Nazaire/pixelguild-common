@@ -97,6 +97,7 @@ type StoryGameLevel {
   id: ID!
   levelId: StoryGameLevelIdentifier!
   updatedAt: DateTime!
+  user: User!
   userId: ID!
 }
 
@@ -176,6 +177,7 @@ type TransactionReceipt {
 
 type User {
   createdAt: DateTime!
+  fractalUserId: String
   id: ID!
   solCredit: Float!
   solCreditLatestSignature: String
