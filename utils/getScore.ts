@@ -13,18 +13,19 @@ import { clamp, floor } from "lodash";
  * @param duration
  */
 export function getScore(coins: number, duration: number) {
-  /**
-   * 1 point for every second off 7 minutes
-   */
+  // DURATION SCORE
+
   const x = 1 - clamp(duration / 1000, 0, 420) / 420;
   const x2 = Math.pow(x, 2);
   const durationScore = Math.floor(420 * x2);
 
   console.log({ duration, x, durationScore });
-  /**
-   * 1 point for each coin
-   */
+
+  // COIN SCORE
+
   const coinScore = coins;
 
-  return durationScore + coinScore;
+  const score = durationScore + coinScore;
+
+  return { score, durationScore, coinScore };
 }
