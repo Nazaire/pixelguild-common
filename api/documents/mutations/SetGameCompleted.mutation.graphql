@@ -10,6 +10,9 @@ mutation SetGameCompleted(
   ) {
     storyGameLevel {
       ...storyGameLevel
+      user {
+        ...user
+      }
     }
     goldReceipt {
       id
