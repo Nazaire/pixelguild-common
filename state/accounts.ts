@@ -29,6 +29,10 @@ export const MainnetAccounts = definePixelGuildAccounts({
     "HnXoSyPPJWMRZz9foG963jFGAkT3T5BF6AFGaYz2hc8y"
   ),
 
+  LOOT_CHEST_WIZARD: new PublicKey(
+    "GijjrLQdDmiiZA99swAFHGU5NDheMvx2d8VfQkj8s6o2"
+  ), // todo: mainnet
+
   CHARACTER_MASTER_EDITION_GOLDEN_BABA: new PublicKey(
     "5JuCjAAxpeyTbv6b9tp9hwim1spWxuGq6Zno1WGqMRGv"
   ),
@@ -82,6 +86,10 @@ export const DevnetAccounts = definePixelGuildAccountsWithDefaults(
 
     LOOT_CHEST_GOLDEN: new PublicKey(
       "Ffv5ty4k1Esbw3FUhj6v6amscFTozD6gbJCvAqombxfo"
+    ),
+
+    LOOT_CHEST_WIZARD: new PublicKey(
+      "GijjrLQdDmiiZA99swAFHGU5NDheMvx2d8VfQkj8s6o2"
     ),
 
     CHARACTER_MASTER_EDITION_GOLDEN_BABA: new PublicKey(

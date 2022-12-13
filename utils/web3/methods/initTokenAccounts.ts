@@ -28,7 +28,6 @@ export async function initTokenAccounts(params: {
       });
     }
   }
-
   if (accountsToCreate.length > 0) {
     const tx = new Transaction();
     tx.feePayer = params.payer;
@@ -41,6 +40,8 @@ export async function initTokenAccounts(params: {
       tx.recentBlockhash = blockhash;
       tx.lastValidBlockHeight = lastValidBlockHeight;
     }
+
+    console.log(`Creating token accounts...`, accountsToCreate);
 
     tx.instructions.push(
       ...accountsToCreate.map(({ mint, account }) =>

@@ -1,10 +1,12 @@
 import {
   ILootBoxConfig,
+  LootBoxConfig,
   LootBoxDefinitions,
   LootBoxKey,
 } from "@common/types/LootBoxConfig";
 import { PixelGuildAccount } from "@common/types/PixelGuildAccount.enum";
-import { cloneDeep } from "lodash";
+import { cluster } from "@common/utils/web3/getConnection";
+import { cloneDeep, isNil } from "lodash";
 import { useAccount } from "./accounts";
 
 const LootBoxDefinitions: ILootBoxConfig[] = [
@@ -69,6 +71,63 @@ const LootBoxDefinitions: ILootBoxConfig[] = [
           type: "edition",
           masterEdition: useAccount(
             PixelGuildAccount.CHARACTER_MASTER_EDITION_GOLDEN_BABA
+          ).toString(),
+        },
+      },
+    ],
+  },
+
+  {
+    key: LootBoxKey.WIZARD_CHEST,
+    inputs: [
+      {
+        // GOLDEN KEY
+        creator: useAccount(
+          PixelGuildAccount.GOLDEN_KEY_NFT_CREATOR
+        ).toString(),
+        method: "transfer",
+        amount: 1,
+      },
+      {
+        token: useAccount(PixelGuildAccount.LOOT_CHEST_WIZARD).toString(),
+        method: "burn" as const,
+        amount: 1,
+      },
+    ],
+    rewards: [
+      {
+        weight: 1,
+        reward: {
+          type: "edition" as const,
+          masterEdition: useAccount(
+            PixelGuildAccount.CHARACTER_MASTER_EDITION_YAGA
+          ).toString(),
+        },
+      },
+      {
+        weight: 1,
+        reward: {
+          type: "edition" as const,
+          masterEdition: useAccount(
+            PixelGuildAccount.CHARACTER_MASTER_EDITION_GORC
+          ).toString(),
+        },
+      },
+      {
+        weight: 1,
+        reward: {
+          type: "edition" as const,
+          masterEdition: useAccount(
+            PixelGuildAccount.CHARACTER_MASTER_EDITION_KENNY
+          ).toString(),
+        },
+      },
+      {
+        weight: 1,
+        reward: {
+          type: "edition" as const,
+          masterEdition: useAccount(
+            PixelGuildAccount.CHARACTER_MASTER_EDITION_LILA
           ).toString(),
         },
       },

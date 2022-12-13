@@ -3,6 +3,7 @@ import { reduce } from "lodash";
 export enum LootBoxKey {
   GOLDEN_CHEST_1 = "GOLDEN_CHEST_1",
   GOLDEN_CHEST_GUARANTEED = "GOLDEN_CHEST_GUARANTEED",
+  WIZARD_CHEST = "WIZARD_CHEST",
 }
 
 export interface ILootBoxInput {
