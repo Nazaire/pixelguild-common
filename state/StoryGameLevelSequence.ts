@@ -6,4 +6,5 @@ export const StoryGameLevelSequence = [
   StoryGameLevelIdentifier.SEWER,
   StoryGameLevelIdentifier.DUNGEON,
   StoryGameLevelIdentifier.SWAMP,
+  StoryGameLevelIdentifier.HAUNTEDHOTEL,
 ] as const;

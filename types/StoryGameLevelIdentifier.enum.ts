@@ -4,4 +4,5 @@ export enum StoryGameLevelIdentifier {
   SEWER = "SEWER",
   DUNGEON = "DUNGEON",
   SWAMP = "SWAMP",
+  HAUNTEDHOTEL = "HAUNTEDHOTEL",
 }

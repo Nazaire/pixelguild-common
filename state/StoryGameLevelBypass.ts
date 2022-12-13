@@ -8,4 +8,5 @@ export const StoryGameLevelBypass = [
   StoryGameLevelIdentifier.SEWER,
   StoryGameLevelIdentifier.DUNGEON,
   StoryGameLevelIdentifier.SWAMP,
+  StoryGameLevelIdentifier.HAUNTEDHOTEL,
 ];
