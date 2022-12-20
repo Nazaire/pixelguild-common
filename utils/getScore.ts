@@ -28,8 +28,6 @@ export function getScore(coins: number, duration: number | null | undefined) {
   const x2 = Math.pow(x, 2);
   const durationScore = Math.floor(DURATION_WEIGHT * x2);
 
-  console.log({ duration, x, durationScore });
-
   // COIN SCORE
 
   const coinScore = coins;
