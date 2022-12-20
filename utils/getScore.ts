@@ -1,23 +1,32 @@
-import { clamp, floor } from "lodash";
+import { clamp, floor, isNil } from "lodash";
 
 /**
- * Based on average stats 1 coin adds 2 seconds to the score.
- *
- * Couple of examples:
- *
- * 100 COINS @ 400 S = 120
- * 100 COINS @ 300 S = 220
- *
+ * The longest duration possible to earn a duration score
+ */
+const DURATION_CUTOFF = 600;
+
+/**
+ * This should probably change per level.
+ */
+const DURATION_WEIGHT = 500;
+
+/**
+ * This function calculates an aggregate score value from game results.
+ * Set duration as null, to evaluate a score when the player has lost.
  *
  * @param coins
  * @param duration
  */
-export function getScore(coins: number, duration: number) {
+export function getScore(coins: number, duration: number | null | undefined) {
+  if (isNil(duration)) {
+    return { score: coins, coinScore: coins, durationScore: 0 };
+  }
+
   // DURATION SCORE
 
-  const x = 1 - clamp(duration / 1000, 0, 420) / 420;
+  const x = 1 - clamp(duration / 1000, 0, DURATION_CUTOFF) / DURATION_CUTOFF;
   const x2 = Math.pow(x, 2);
-  const durationScore = Math.floor(420 * x2);
+  const durationScore = Math.floor(DURATION_WEIGHT * x2);
 
   console.log({ duration, x, durationScore });
 
