@@ -1,0 +1,3 @@
+query SubmitCaptcha($token: String!) {
+  submitCaptcha(token: $token)
+}

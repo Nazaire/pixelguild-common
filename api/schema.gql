@@ -52,7 +52,6 @@ type Mutation {
   createWithdrawGoldTransaction(feePayer: String, userId: ID!): GoldBucket!
   equipCustomisationItem(item: String, slot: UserProfileCustomisationSlot!, userId: ID!): UserProfile!
   linkFractalUser(fractalToken: String!): User!
-  loginWithFractal(fractalToken: String!, wallet: String!): String
   processTokenDispenserAllocationTransaction(signature: String!, tokenDispenserId: TokenDispenserId!, user: String!): TokenDispenserAllocation
   processWithdrawGoldTransaction(signature: String!, userId: ID!): GoldBucket!
   setGameCompleted(endGameState: StoryGameLevelGameState!, gameCoins: StoryGameCoinsInput, gameId: ID!): SetGameCompletedResult!
@@ -69,6 +68,7 @@ type Query {
   processTokenSwapTransaction(blockHash: String!, key: String!, signature: String!, user: String!): String!
   signGoldenKeyBurnTransaction(blockhash: String!, mints: [String!]!, user: String!): String!
   storyGameProgress(userId: ID!): StoryGameProgress
+  submitCaptcha(token: String!): String!
   tokenDispenser(id: TokenDispenserId!): TokenDispenser
   tokenDispenserQuote(amount: Float!, id: TokenDispenserId!): Float!
   user(id: ID!): User
