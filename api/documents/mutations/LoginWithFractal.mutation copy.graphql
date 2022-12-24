@@ -1,3 +1,0 @@
-mutation LoginWithFractal($wallet: String!, $fractalToken: String!) {
-  loginWithFractal(wallet: $wallet, fractalToken: $fractalToken)
-}
