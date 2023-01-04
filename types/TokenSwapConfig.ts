@@ -1,5 +1,6 @@
 export enum TokenSwapConfigKey {
-  PIXEL_FOR_GOLDEN_CHEST = "PIXEL_FOR_GOLDEN_CHEST",
+  // PIXEL_FOR_GOLDEN_CHEST = "PIXEL_FOR_GOLDEN_CHEST",
+  PIXEL_FOR_WIZARD_CHEST = "PIXEL_FOR_WIZARD_CHEST",
 }
 
 export interface ITokenSwapInput {

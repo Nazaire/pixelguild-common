@@ -11,7 +11,7 @@ const TokenSwapConfigs: ITokenSwapConfig[] =
   cluster === "devnet"
     ? [
         {
-          key: TokenSwapConfigKey.PIXEL_FOR_GOLDEN_CHEST,
+          key: TokenSwapConfigKey.PIXEL_FOR_WIZARD_CHEST,
           input: {
             token: useAccount(PixelGuildAccount.PIXEL).toString(),
             amount: 1e6,
@@ -19,7 +19,7 @@ const TokenSwapConfigs: ITokenSwapConfig[] =
             destination: useAccount(PixelGuildAccount.DRAIN).toString(),
           },
           output: {
-            token: useAccount(PixelGuildAccount.LOOT_CHEST_GOLDEN).toString(),
+            token: useAccount(PixelGuildAccount.LOOT_CHEST_WIZARD).toString(),
             amount: 1,
             source: {
               type: "mint",
