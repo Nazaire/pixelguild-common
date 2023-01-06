@@ -37,7 +37,10 @@ export function getTokenSwapConfigs() {
 export function getTokenSwapConfigByKey(key: string) {
   const match = TokenSwapConfigs.find((config) => config.key === key);
 
-  if (!match) throw `Config not found with key: ${key}`;
+  if (!match) {
+    console.warn(`Config not found with key: ${key}`);
+    return null as never;
+  }
 
   return cloneDeep(match);
 }
