@@ -30,8 +30,8 @@ export const MainnetAccounts = definePixelGuildAccounts({
   ),
 
   LOOT_CHEST_WIZARD: new PublicKey(
-    "GijjrLQdDmiiZA99swAFHGU5NDheMvx2d8VfQkj8s6o2"
-  ), // todo: mainnet
+    "5vTwjhxDdVfGdCpbb9bMhZxU5yMQfMERAMaYzLsn22zB"
+  ),
 
   CHARACTER_MASTER_EDITION_GOLDEN_BABA: new PublicKey(
     "5JuCjAAxpeyTbv6b9tp9hwim1spWxuGq6Zno1WGqMRGv"
