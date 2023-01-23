@@ -12,7 +12,7 @@ const TokenSwapConfigs: ITokenSwapConfig[] = [
     key: TokenSwapConfigKey.PIXEL_FOR_WIZARD_CHEST,
     input: {
       token: useAccount(PixelGuildAccount.PIXEL).toString(),
-      amount: 1e6,
+      amount: 60e6,
       type: "transfer",
       destination: useAccount(PixelGuildAccount.DRAIN).toString(),
     },
