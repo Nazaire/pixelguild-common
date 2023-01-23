@@ -7,28 +7,25 @@ import { cluster } from "@common/utils/web3/getConnection";
 import { cloneDeep } from "lodash";
 import { useAccount } from "./accounts";
 
-const TokenSwapConfigs: ITokenSwapConfig[] =
-  cluster === "devnet"
-    ? [
-        {
-          key: TokenSwapConfigKey.PIXEL_FOR_WIZARD_CHEST,
-          input: {
-            token: useAccount(PixelGuildAccount.PIXEL).toString(),
-            amount: 1e6,
-            type: "transfer",
-            destination: useAccount(PixelGuildAccount.DRAIN).toString(),
-          },
-          output: {
-            token: useAccount(PixelGuildAccount.LOOT_CHEST_WIZARD).toString(),
-            amount: 1,
-            source: {
-              type: "mint",
-              authority: useAccount(PixelGuildAccount.AUTHORITY).toString(),
-            },
-          },
-        },
-      ]
-    : [];
+const TokenSwapConfigs: ITokenSwapConfig[] = [
+  {
+    key: TokenSwapConfigKey.PIXEL_FOR_WIZARD_CHEST,
+    input: {
+      token: useAccount(PixelGuildAccount.PIXEL).toString(),
+      amount: 1e6,
+      type: "transfer",
+      destination: useAccount(PixelGuildAccount.DRAIN).toString(),
+    },
+    output: {
+      token: useAccount(PixelGuildAccount.LOOT_CHEST_WIZARD).toString(),
+      amount: 1,
+      source: {
+        type: "mint",
+        authority: useAccount(PixelGuildAccount.AUTHORITY).toString(),
+      },
+    },
+  },
+];
 
 export function getTokenSwapConfigs() {
   return cloneDeep(TokenSwapConfigs);
